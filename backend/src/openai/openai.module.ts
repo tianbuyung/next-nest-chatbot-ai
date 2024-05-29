@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import OpenAI from 'openai';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { OpenaiController } from './openai.controller';
 import { OpenaiService } from './openai.service';
+import { ConfigurationsService } from '../configurations/configurations.service';
 
 @Module({
   controllers: [OpenaiController],
@@ -11,13 +11,12 @@ import { OpenaiService } from './openai.service';
     OpenaiService,
     {
       provide: OpenAI,
-      useFactory: (configService: ConfigService) =>
+      useFactory: (configurationsService: ConfigurationsService) =>
         new OpenAI({
-          apiKey: configService.getOrThrow('OPENAI_API_KEY'),
+          apiKey: configurationsService.getOpenaiApiKey(),
         }),
-      inject: [ConfigService],
+      inject: [ConfigurationsService],
     },
   ],
-  imports: [ConfigModule],
 })
 export class OpenaiModule {}
