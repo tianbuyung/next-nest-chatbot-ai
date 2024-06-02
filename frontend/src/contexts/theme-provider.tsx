@@ -9,11 +9,6 @@ import {
   useState,
 } from "react";
 
-interface ThemeContextType {
-  theme: ThemeOptions;
-  changeTheme: (theme: ThemeOptions) => void;
-}
-
 export const ThemeContext = createContext<ThemeContextType>({
   theme: "system",
   changeTheme: () => {},

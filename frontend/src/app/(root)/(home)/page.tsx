@@ -1,9 +1,5 @@
-import { ModeToggle } from "@/components/themes/mode-toggle";
+import { ChatApp } from "@/components/features/chat/chat-app";
 
 export default function Home() {
-  return (
-    <main>
-      <ModeToggle />
-    </main>
-  );
+  return <ChatApp />;
 }
